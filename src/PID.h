@@ -45,6 +45,12 @@ class PID {
   double Kp;
   double Ki;
   double Kd;
+  
+  /**
+  * total error variable
+  */
+  
+  double total_error;
 };
 
 #endif  // PID_H

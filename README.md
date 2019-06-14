@@ -1,3 +1,30 @@
+# Project - Driving a vehicale using PID controller.
+
+This project was completed by first successfully implementing the steering control of the vehicle and then finally tuning all the parameters of the PID controller. 
+
+## The parameters of PID controller
+
+There are 3 parameters of PID controller: 
+
+* The Proportional Constant (Kp):This is basically to steer the car proportional to cross track error ( distance of the car from the center of the lane). The higher the value more oscillations will be there on a straight road but if the value is too small the car may never correct itself.
+
+* The Derivative Constant (Kd) : This corrects the change in CTE from one value to the next. This means that 1) if the derivative is quickly changing, the car will correct itself (i.e. higher steering angle) faster, such as in the case of a curve, and 2) if the car is moving outward from the middle, this will cause the steering to get larger (as the derivative sign will match the proportional sign), but if the car is moving toward the center (meaning the derivative value will be negative), the car's steering angle will get smoothed out, leading to a more smoother driving experience. Too high of a coefficient leads to almost constant steering angle changes of large degrees, where although the car will be well-centered it can hardly move. Too low of a D coefficient will lead to the oscillations being too high with more overshooting
+
+* The Integral Constant (Ki) : This represents the integral sums up all CTEs up to that point, such that too many negative CTEs (in this case, meaning the car has been to the left of the middle of the lane for awhile) will drive up this value, causing the car to turn back toward the middle, preventing the car from driving on one side of the lane the whole time. If the coefficient is too high for I, the car tends to have quicker oscillations, and does not tend to get up to a quick speed. A low coefficent for I will cause the car to tend to drift to one side of the lane or the other for longer periods of time.
+ 
+
+## Parameter Tuning
+
+The final parameters were used using trial and error. I started of tuning initially the Kp parameter and tuned it in such a way that the oscillations on a straight line came to minimum. the final tuned parameter was set as Kp : 0.14
+Secondly i started tuning Ki after that. It took a lot of time to tune it as the Ki for it to work should be very small. the final chosen parameter was Ki : 0.0001
+Thirdly the final parameter (Kd) was tuned in order to minimize the oscilations on curves as well. It was tuned to 3.0 
+All the parameters used in the end were Kp, Ki, Kd = 0.14 , 0.0001, 3.0
+
+
+## Goal Achieved
+
+In the final program the vehicle was able to drive inside the track and with less possible oscillations. 
+
 # CarND-Controls-PID
 Self-Driving Car Engineer Nanodegree Program
 
@@ -64,35 +91,7 @@ for instructions and the project rubric.
 * You don't have to follow this directory structure, but if you do, your work
   will span all of the .cpp files here. Keep an eye out for TODOs.
 
-## Call for IDE Profiles Pull Requests
 
-Help your fellow students!
 
-We decided to create Makefiles with cmake to keep this project as platform
-agnostic as possible. Similarly, we omitted IDE profiles in order to we ensure
-that students don't feel pressured to use one IDE or another.
 
-However! I'd love to help people get up and running with their IDEs of choice.
-If you've created a profile for an IDE that you think other students would
-appreciate, we'd love to have you add the requisite profile files and
-instructions to ide_profiles/. For example if you wanted to add a VS Code
-profile, you'd add:
-
-* /ide_profiles/vscode/.vscode
-* /ide_profiles/vscode/README.md
-
-The README should explain what the profile does, how to take advantage of it,
-and how to install it.
-
-Frankly, I've never been involved in a project with multiple IDE profiles
-before. I believe the best way to handle this would be to keep them out of the
-repo root to avoid clutter. My expectation is that most profiles will include
-instructions to copy files to a new location to get picked up by the IDE, but
-that's just a guess.
-
-One last note here: regardless of the IDE used, every submitted project must
-still be compilable with cmake and make./
-
-## How to write a README
-A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
 
